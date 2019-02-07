@@ -10,10 +10,11 @@ import {
   NavLink,
   UncontrolledDropdown,
   DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownMenu} from 'reactstrap';
   import SearchBar from './Search';
   import DropdownButton from'./DropdownButton';
+  import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+  import TeamProfile from './TeamProfile';
 
 export default class MyNavBar extends React.Component {
   constructor(props) {
@@ -22,36 +23,29 @@ export default class MyNavBar extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false,
-      teams: [],
-      teamNames: [
-        "Huddersfield Giants",
-        "Hull FC",
-        "Hull KR"
-      ]
+      slTeams: [],
+      cTeams: []    
     };
   }
   componentDidMount() {
-    fetch('http://localhost:8090/api/team/')
+    fetch('http://localhost:8090/api/league/9/team/')
     .then(response =>  response.json())
     .then(resData => {
       //  console.log(JSON.stringify(resData))
        //do your logic here       
        //let person = resData.results
-       this.setState({ teams: resData.results }); //this is an asynchronous function
+       this.setState({ slTeams: resData }); //this is an asynchronous function
     })
+    fetch('http://localhost:8090/api/league/10/team/')
+    .then(response =>  response.json())
+    .then(resData => {
+      //  console.log(JSON.stringify(resData))
+       //do your logic here       
+       //let person = resData.results
+       this.setState({ cTeams: resData }); //this is an asynchronous function
+    })
+    
 }
-
-// filterSubjects = (subjectFilter) => {
-//   let filteredSubjects = this.state.subjects
-//   filteredSubjects = filteredSubjects.filter((subject) => {
-//     let subjectName = subject.name.toLowerCase()
-//     return subjectName.indexOf(
-//       subjectFilter.toLowerCase()) !== -1
-//   })
-//   this.setState({
-//     filteredSubjects
-//   })
-// }
   
   toggle() {
     this.setState({
@@ -60,6 +54,7 @@ export default class MyNavBar extends React.Component {
   }
   render() {
     return (
+      <Router>
       <div>
         <Navbar color="light" light expand="md">
           <img src={logo} alt="logo" height="75px"/>
@@ -77,45 +72,7 @@ export default class MyNavBar extends React.Component {
                   Super League
                 </DropdownToggle>
                 <DropdownMenu right>
-                  {/* <DropdownButton data={this.state.teams}/> */}
-
-                  {this.state.teams.map((club) => (
-                    <DropdownItem>{club.toString()}</DropdownItem>
-                  ))}
-
-                  {/* <DropdownItem>
-                  Catalan Dragons
-                  </DropdownItem>
-                  <DropdownItem>
-                  Huddersfield Giants
-                  </DropdownItem>
-                  <DropdownItem>
-                  Hull FC
-                  </DropdownItem>
-                  <DropdownItem>
-                  Hull KR
-                  </DropdownItem>
-                  <DropdownItem>
-                  Leeds Rhinos
-                  </DropdownItem>
-                  <DropdownItem>
-                  London Broncos
-                  </DropdownItem>
-                  <DropdownItem>
-                  Salford Red Devils
-                  </DropdownItem>
-                  <DropdownItem>
-                  St Helens
-                  </DropdownItem>
-                  <DropdownItem>
-                  Wakefield Trinity
-                  </DropdownItem>
-                  <DropdownItem>
-                  Warrington Wolves
-                  </DropdownItem>
-                  <DropdownItem>
-                  Wigan Warriors
-                  </DropdownItem>*/}
+                 <DropdownButton data={this.state.slTeams}/>
                 </DropdownMenu> 
               </UncontrolledDropdown>
               <UncontrolledDropdown nav inNavbar>
@@ -123,16 +80,7 @@ export default class MyNavBar extends React.Component {
                   Championship
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>
-                    Toronto Wolfpack
-                  </DropdownItem>
-                  <DropdownItem>
-                    Bradford Bulls
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
-                  </DropdownItem>
+                <DropdownButton data={this.state.cTeams}/>
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
@@ -140,6 +88,7 @@ export default class MyNavBar extends React.Component {
           <SearchBar/>
         </Navbar>
       </div>
+      </Router>
     );
   }
 }

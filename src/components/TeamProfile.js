@@ -8,31 +8,45 @@ class TeamProfile extends Component {
         super(props);
 
         this.state = {
-            teams: []           
+            team: [],
+            players:[]         
           }
         }
         componentDidMount() {
-            fetch('http://localhost:8090/api/team/')
+            
+            fetch('http://localhost:8090/api/team/23/player')
             .then(response =>  response.json())
             .then(resData => {
-               console.log(JSON.stringify(resData))
+            //    console.log(JSON.stringify(resData))
                //do your logic here       
                //let person = resData.results
-               this.setState({ teams: resData.results }); //this is an asynchronous function
+               this.setState({ players: resData }); //this is an asynchronous function
             })
-        }
+        
+
+        fetch('http://localhost:8090/api/team/23')
+        .then(response =>  response.json())
+        .then(resData => {
+            //console.log(JSON.stringify(resData))
+           //do your logic here       
+           //let person = resData.results
+           this.setState({ team: resData }); //this is an asynchronous function
+        })
+    }
 
 
     render() {
         return (
             <div id="teamProfile">
-                <TeamProfileHead />
+            <div className="container"><br/>
+                <TeamProfileHead teamData={this.state.team}/>
 
-                <div class="row">
+                <div className="row">
+                
 
-                   <ProfileTile />
-                   <ProfileTile />              
-
+                   <ProfileTile data={this.state.players}/>
+                           
+                           </div>
                 </div>
                 
             </div>

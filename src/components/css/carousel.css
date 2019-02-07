@@ -44,16 +44,16 @@
 				cursor: pointer;
 				background-color: #0009;
 				background-color: rgba(0,0,0,0);
-				border: 1px solid #16a085;
+				border: 1px solid red;
 				border-radius: 50%;
 			}
-			/* .carousel-indicators .active
+			.carousel-indicators .active
 			{
 				width: 12px;
 				height: 12px;
 				margin: 0;
-				background-color: #16a085;
-			} */
+				background-color: red;
+			}
 			.carousel-caption
 			{
 				position: absolute;

@@ -14,23 +14,7 @@ class App extends Component {
       teams: []
     }
   };
-
-  // componentDidMount(){
-  //   fetch('http://localhost:8090/api/team/')
-  //   .then(results => {
-  //     return results.json();
-  //   }).then(data => {
-  //     let teams = data.results.map((name) => {
-  //       <div key={name.results}>
-  //       <button> </button>
-  //       </div>
-  //     })
-
-  //   }
-
-  
-
-   
+ 
 
   render() {
     return (
