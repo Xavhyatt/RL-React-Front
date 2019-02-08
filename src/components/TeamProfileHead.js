@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
+import './css/teamphead.css';
 
 class TeamProfileHead extends Component {
+
+
+//     let bgcol = this.props.teamData.colours;
+//     console.log(this.props.teamData.colours)
+//     console.log(bgcol); 
+// }
+   
+
     render() {
 
         
         return (
             <div className="jumbotron p-3 text-center" key={this.props.teamData.teamId} >
                     <h1 id="teamName" className="display-4">{this.props.teamData.name}</h1>
-
                     <div>
                         <img id="teamLogo" src={this.props.teamData.logoLink} className="img-thumbnail"
                             alt="avatar" />

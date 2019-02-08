@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import NavBar from './components/NavBar';
-import Carousel from './components/MyCarousel';
-
+import Header from './components/Header';
+import MainContent from './components/MainContent';
+import Footer from './components/Footer';
 import './App.css';
-import TeamProfile from './components/TeamProfile';
+import {BrowserRouter as Router} from "react-router-dom";
+
 
 
 
@@ -18,13 +19,16 @@ class App extends Component {
 
   render() {
     return (
+<Router>
       <div className="App">
-      
        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
-      <NavBar />
-      <Carousel />   
-     <TeamProfile />
+      <Header/>
+      <MainContent />
+      <Footer />
+    
+
             </div>
+            </Router>
     );
   }
 }

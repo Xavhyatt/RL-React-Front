@@ -9,22 +9,25 @@ class TeamProfile extends Component {
 
         this.state = {
             team: [],
-            players:[]         
+            players:[],
+            tId: this.props.location.state.teamId       
           }
         }
-        componentDidMount() {
-            
-            fetch('http://localhost:8090/api/team/23/player')
+        componentDidMount() {   
+ 
+
+            fetch('http://localhost:8090/api/team/'+this.state.tId+'/player')
             .then(response =>  response.json())
             .then(resData => {
-            //    console.log(JSON.stringify(resData))
+              //  console.log(JSON.stringify(resData))
                //do your logic here       
                //let person = resData.results
                this.setState({ players: resData }); //this is an asynchronous function
             })
+            
         
 
-        fetch('http://localhost:8090/api/team/23')
+        fetch('http://localhost:8090/api/team/'+this.state.tId)
         .then(response =>  response.json())
         .then(resData => {
             //console.log(JSON.stringify(resData))
@@ -32,9 +35,8 @@ class TeamProfile extends Component {
            //let person = resData.results
            this.setState({ team: resData }); //this is an asynchronous function
         })
+
     }
-
-
     render() {
         return (
             <div id="teamProfile">
@@ -52,6 +54,19 @@ class TeamProfile extends Component {
             </div>
         );
     }
+    shouldComponentUpdate(nextProps){
+        // console.log(this.props.location.state.teamId);
+        // console.log(nextProps.location.state.teamId);
+        // console.log(this.props.location.state.teamId !== nextProps.location.state.teamId);
+        if(this.props.location.state.teamId !== nextProps.location.state.teamId){
+        this.setState({tId: nextProps.location.state.teamId}); 
+        console.log(this.state.tId);
+        console.log(nextProps.location.state.teamId);
+        }
+
+        }
+
+ 
 }
 
 export default TeamProfile;

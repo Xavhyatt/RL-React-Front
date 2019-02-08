@@ -23,15 +23,15 @@ class ProfileTile extends Component {
                         </h4>
                         <div className="card-body">
                             <div className="image float-left user-l">
-                                <img src={element.pictureLink} className="img-thumbnail"
+                                <img key={element.playerId.toString()} src={element.pictureLink} className="img-thumbnail"
                                     alt="avatar" />
                             </div>
                             <h4 className="card-title">{element.position}</h4>
                             <p className="card-text">
-                                <p className="lead"> Nationality: {element.nationality}</p>
-                                <p className="lead"> Height (cm): {element.height}</p>
-                                <p className="lead"> Weight (kg): {element.weight}</p>
-                                <p className="lead"> Birthday:  {element.birth}</p></p>
+                                 Nationality: {element.nationality}<br/>
+                                 Height (cm): {element.height}<br/>
+                                 Weight (kg): {element.weight}<br/>
+                                 Birthday:  {element.birth}<br/></p>
                         </div>
                     </div>
                 </div>

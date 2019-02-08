@@ -1,20 +1,21 @@
 import React from 'react';
-import logo from './img/rfl.jpg';
+import logo from './img/rfl.jpg'
 import {
   Collapse,
   Navbar,
   NavbarToggler,
-//   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu} from 'reactstrap';
+  import {NavLink as NavLinkR} from 'reactstrap';
   import SearchBar from './Search';
   import DropdownButton from'./DropdownButton';
-  import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-  import TeamProfile from './TeamProfile';
+  import { BrowserRouter as Router,  NavLink } from "react-router-dom";
+ 
+  import './css/header.css';
+ 
 
 export default class MyNavBar extends React.Component {
   constructor(props) {
@@ -54,25 +55,27 @@ export default class MyNavBar extends React.Component {
   }
   render() {
     return (
-      <Router>
-      <div>
-        <Navbar color="light" light expand="md">
-          <img src={logo} alt="logo" height="75px"/>
+ 
+     <div>
+        <Navbar className="navbar" color="light" light expand="md">
+        <img className = "logo" src={logo} alt="logo" height="75px"/>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Home</NavLink>
-              </NavItem>
+                <NavLink to="/"><NavLinkR>Home</NavLinkR></NavLink>
+                </NavItem>
               <NavItem>
-                <NavLink href="https://www.rugby-league.com/superleague/fixtures">Fixtures</NavLink>
+               <NavLink to="/fixtures"> <NavLinkR>Fixtures</NavLinkR></NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Super League
                 </DropdownToggle>
                 <DropdownMenu right>
+               
                  <DropdownButton data={this.state.slTeams}/>
+              
                 </DropdownMenu> 
               </UncontrolledDropdown>
               <UncontrolledDropdown nav inNavbar>
@@ -85,10 +88,11 @@ export default class MyNavBar extends React.Component {
               </UncontrolledDropdown>
             </Nav>
           </Collapse>
-          <SearchBar/>
+          
+          <SearchBar className="searchBar"/>
         </Navbar>
       </div>
-      </Router>
+
     );
   }
 }
