@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import './css/profiletile.css';
 
 class ProfileTile extends Component {
     render() {
         let tile = this.props.data.map((element) => {
             return (
-                
+                <div className="row">
                 <div className="col-sm-6">
-                    <div className="card" key={element.playerId.toString()}>
+                    <div className="card" key={element.playerId.toString() + "card"}>
                         <h4 className="card-header bg-dark text-white">{element.name} {element.surname}
                             {/* <div className="float-right small">
                                 <a className="btn btn-raised btn-danger" title="Ver perfil de Miguel92"
@@ -23,17 +24,18 @@ class ProfileTile extends Component {
                         </h4>
                         <div className="card-body">
                             <div className="image float-left user-l">
-                                <img key={element.playerId.toString()} src={element.pictureLink} className="img-thumbnail"
+                                <img key={element.playerId.toString() + "pic"} src={element.pictureLink} className="img-thumbnail"
                                     alt="avatar" />
                             </div>
-                            <h4 className="card-title">{element.position}</h4>
-                            <p className="card-text">
+                            <h4 className="card-title"  key={element.playerId.toString() + "position"}>{element.position}</h4>
+                            <p className="card-text"  key={element.playerId.toString() + "details"}>
                                  Nationality: {element.nationality}<br/>
                                  Height (cm): {element.height}<br/>
                                  Weight (kg): {element.weight}<br/>
                                  Birthday:  {element.birth}<br/></p>
                         </div>
                     </div>
+                </div>
                 </div>
             );
         });

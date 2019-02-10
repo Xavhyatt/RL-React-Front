@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import TeamProfileHead from './TeamProfileHead'
-import ProfileTile from'./ProfileTile'
+import TeamProfileHead from './TeamProfileHead';
+import FilterForm from './FilterForm';
+import ProfileTile from './ProfileTile';
 
 
 class TeamProfile extends Component {
@@ -9,64 +10,97 @@ class TeamProfile extends Component {
 
         this.state = {
             team: [],
-            players:[],
-            tId: this.props.location.state.teamId       
-          }
+            players: [],
+            tId: this.props.location.state.teamId,
+            filteredPlayers: []
         }
-        componentDidMount() {   
- 
+    }
 
-            fetch('http://localhost:8090/api/team/'+this.state.tId+'/player')
-            .then(response =>  response.json())
+    filterPlayers = (playerFilter) => {
+        fetch('http://localhost:8090/api/team/' + this.state.tId + '/player')
+            .then(response => response.json())
             .then(resData => {
-              //  console.log(JSON.stringify(resData))
-               //do your logic here       
-               //let person = resData.results
-               this.setState({ players: resData }); //this is an asynchronous function
+                //  console.log(JSON.stringify(resData))
+                //do your logic here       
+                //let person = resData.results
+                this.setState({ players: resData }); //this is an asynchronous function
             })
-            
-        
-
-        fetch('http://localhost:8090/api/team/'+this.state.tId)
-        .then(response =>  response.json())
-        .then(resData => {
-            //console.log(JSON.stringify(resData))
-           //do your logic here       
-           //let person = resData.results
-           this.setState({ team: resData }); //this is an asynchronous function
+        let filteredPlayers = this.state.players
+        filteredPlayers = filteredPlayers.filter((player) => {
+            let playerFName = player.name.toLowerCase();
+            let playerSName = player.surname.toLowerCase();
+            let playerName = playerFName + " " + playerSName;
+            return playerName.indexOf(
+                playerFilter.toLowerCase()) !== -1
         })
+        this.setState({
+            filteredPlayers
+        })
+    }
+
+    componentDidMount() {
+        // this.setState({tId:this.props.location.state.teamId});
+        // console.log(this.state.tId);
+
+
+        fetch('http://localhost:8090/api/team/' + this.state.tId + '/player')
+            .then(response => response.json())
+            .then(resData => {
+                //  console.log(JSON.stringify(resData))
+                //do your logic here       
+                //let person = resData.results
+                this.setState({ players: resData }); //this is an asynchronous function
+            })
+
+
+
+        fetch('http://localhost:8090/api/team/' + this.state.tId)
+            .then(response => response.json())
+            .then(resData => {
+                //console.log(JSON.stringify(resData))
+                //do your logic here       
+                //let person = resData.results
+                this.setState({ team: resData }); //this is an asynchronous function
+            })
+
 
     }
     render() {
         return (
             <div id="teamProfile">
-            <div className="container"><br/>
-                <TeamProfileHead teamData={this.state.team}/>
+                <div className="container"><br />
+                    <TeamProfileHead teamData={this.state.team} />
+                    <FilterForm match={this.props.match} onChange={this.filterPlayers} />
 
-                <div className="row">
-                
 
-                   <ProfileTile data={this.state.players}/>
-                           
-                           </div>
+                    <ProfileTile data={this.state.filteredPlayers} />
+
                 </div>
-                
             </div>
+
+
         );
     }
-    shouldComponentUpdate(nextProps){
-        // console.log(this.props.location.state.teamId);
-        // console.log(nextProps.location.state.teamId);
-        // console.log(this.props.location.state.teamId !== nextProps.location.state.teamId);
-        if(this.props.location.state.teamId !== nextProps.location.state.teamId){
-        this.setState({tId: nextProps.location.state.teamId}); 
-        console.log(this.state.tId);
-        console.log(nextProps.location.state.teamId);
-        }
+    // componentWillRecieveProps(nextProps){
+    //     if (nextProps.location.state.teamId !== this.props.location.state.teamId){
+    //         console.log("Hi");
+    //         this.setState({tId:nextProps.location.state.teamId});
+    //     }
+    // }
 
-        }
+    // shouldComponentUpdate(nextProps){
+    //     // console.log(this.props.location.state.teamId);
+    //     // console.log(nextProps.location.state.teamId);
+    //     // console.log(this.props.location.state.teamId !== nextProps.location.state.teamId);
+    //     if(this.props.location.state.teamId !== nextProps.location.state.teamId){
+    //     console.log(this.state.tId);
+    //     console.log(nextProps.location.state.teamId);
+    //     this.setState({tId: nextProps.location.state.teamId}); 
+    //     }
 
- 
+    //   }
+
+
 }
 
 export default TeamProfile;

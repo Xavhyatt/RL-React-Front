@@ -13,7 +13,7 @@ class MainContent extends Component {
                 <div>
                     
                         <Route exact path='/' component={HomePage}  />
-                        <Route path='/fixtures' component={HomePage}  />
+                        {/* <Route path='/fixtures' component={HomePage}  /> */}
                         <Route path='/:teamprofile' component={TeamProfile}  />
                     
                 </div>
