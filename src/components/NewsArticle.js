@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
-import './css/profiletile.css';
-
-class ProfileTile extends Component {
+import React, {Component} from 'react';
+ 
+class NewsArticle extends Component {
     render() {
-        let tile = this.props.data.map((element) => {
+               let article = this.props.data.map((element) => {
             return (
-
+            
                 <div className="col-sm-6">
-                    <div className="card" key={element.playerId.toString() + "card"}>
-                        <h4 className="card-header bg-dark text-white">{element.name} {element.surname}
+                    <div className="card" >
+                        <h4 className="card-header bg-dark text-white">{element.title}
                             {/* <div className="float-right small">
                                 <a className="btn btn-raised btn-danger" title="Ver perfil de Miguel92"
                                     data-toggle="tooltip" data-placement="top" title="Tooltip on top"> 1 
@@ -24,29 +23,33 @@ class ProfileTile extends Component {
                         </h4>
                         <div className="card-body">
                             <div className="image float-left user-l">
-                                <img key={element.playerId.toString() + "pic"} src={element.pictureLink} className="img-thumbnail"
+                                <img  src={element.urlToImage} className="img-thumbnail"
                                     alt="avatar" />
                             </div>
-                            <h4 className="card-title" key={element.playerId.toString() + "position"}>{element.position}</h4>
-                            <p className="card-text" key={element.playerId.toString() + "details"}>
-                                Nationality: {element.nationality}<br />
-                                Height (cm): {element.height}<br />
-                                Weight (kg): {element.weight}<br />
-                                Birthday:  {element.birth}<br /></p>
+                            <h4><a className="card-title" href={element.url}>{element.title}</a></h4>
+                            <div>
+                            <p className="card-text">
+                            {(element.content)}<br/>
+                            <br/>
+                            Date: {(element.publishedAt).substring(0,10)}   Source: {element.source.name}                         
+                             </p>
+                             </div>
                         </div>
                     </div>
                 </div>
-
+              
             );
         });
 
         return (
             <div>
-                <div className="row">
-                    {tile}
+                    <div className="row">
+                {article}
                 </div>
             </div >
         );
+        
     }
 }
-export default ProfileTile;
+
+export default NewsArticle;

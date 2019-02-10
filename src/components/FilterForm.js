@@ -4,7 +4,7 @@ class filterForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      playerFilter: ""
+      playerFilter: this.props.playerFilter
     }
   }
 
@@ -18,13 +18,13 @@ class filterForm extends Component {
   render() {
     return (
       <div>
-          <div className="jumbotron p-3 text-center">
+        
         <label htmlFor="filter">Filter by Name:  </label>
         <input type="text" id="filter" 
           value={this.state.playerFilter} 
           onChange={this.handleChange}/>
       </div>
-        </div>
+        
       )
   }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Carousel from './MyCarousel';
+import NewsMain from './NewsMain';
 
 class HomePage extends Component {
     render() {
@@ -8,6 +9,7 @@ class HomePage extends Component {
             <div>
                 <Carousel />  
                 <h2 id="heading"> Latest Stories</h2>
+                <NewsMain />
             </div>
         );
     }

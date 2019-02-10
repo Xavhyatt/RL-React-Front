@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import Suggestions from './Suggestions';
 import DropdownButton from './DropdownButton';
 
 class Search extends Component {
