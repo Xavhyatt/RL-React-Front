@@ -26,16 +26,19 @@ class NewsArticle extends Component {
                                 <img  src={element.urlToImage} className="img-thumbnail"
                                     alt="avatar" />
                             </div>
+                            <div>
                             <h4><a className="card-title" href={element.url}>{element.title}</a></h4>
+                            </div>
+                            </div>
                             <div>
                             <p className="card-text">
-                            {(element.content)}<br/>
+                            {(element.content).substring(0,257)}<a href={element.url}>... [Continue reading]</a><br/>
                             <br/>
                             Date: {(element.publishedAt).substring(0,10)}   Source: {element.source.name}                         
                              </p>
                              </div>
                         </div>
-                    </div>
+                    
                 </div>
               
             );

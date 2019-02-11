@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
+import Modal from 'react-responsive-modal';
+import PlayerProfile from './PlayerProfile'
 import './css/profiletile.css';
 
+
 class ProfileTile extends Component {
+    state = {
+        open: false,
+    };
+
+    onOpenModal = () => {
+        this.setState({ open: true });
+    };
+
+    onCloseModal = () => {
+        this.setState({ open: false });
+    };
+
+
     render() {
         let tile = this.props.data.map((element) => {
+            const { open } = this.state;
             return (
 
                 <div className="col-sm-6">
@@ -32,9 +49,16 @@ class ProfileTile extends Component {
                                 Nationality: {element.nationality}<br />
                                 Height (cm): {element.height}<br />
                                 Weight (kg): {element.weight}<br />
-                                Birthday:  {element.birth}<br /></p>
+                                Birthday:  {(element.birth).substring(0, 10)}<br /></p>
+                        </div>
+                        <div>
+                            <button className="btn btn-raised btn-danger" onClick={this.onOpenModal}>Player Profile</button>
+                            <Modal open={open} onClose={this.onCloseModal} little>
+                                <PlayerProfile data={element} />
+                            </Modal>
                         </div>
                     </div>
+
                 </div>
 
             );

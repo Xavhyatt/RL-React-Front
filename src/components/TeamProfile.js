@@ -11,13 +11,12 @@ class TeamProfile extends Component {
         this.state = {
             team: [],
             players: [],
-            tId: this.props.location.state.teamId,
             filteredPlayers: []
         }
     }
 
     filterPlayers = (playerFilter) => {
-        fetch('http://localhost:8090/api/team/' + this.state.tId + '/player')
+        fetch('http://localhost:8090/api/team/' + this.props.location.state.teamId + '/player')
             .then(response => response.json())
             .then(resData => {
                 //  console.log(JSON.stringify(resData))
@@ -39,11 +38,10 @@ class TeamProfile extends Component {
     }
 
     componentDidMount() {
-        // this.setState({tId:this.props.location.state.teamId});
-        // console.log(this.state.tId);
+    
 
 
-        fetch('http://localhost:8090/api/team/' + this.state.tId + '/player')
+        fetch('http://localhost:8090/api/team/' + this.props.location.state.teamId + '/player')
             .then(response => response.json())
             .then(resData => {
                 //  console.log(JSON.stringify(resData))
@@ -54,7 +52,7 @@ class TeamProfile extends Component {
 
 
 
-        fetch('http://localhost:8090/api/team/' + this.state.tId)
+        fetch('http://localhost:8090/api/team/' + this.props.location.state.teamId)
             .then(response => response.json())
             .then(resData => {
                 //console.log(JSON.stringify(resData))
@@ -62,19 +60,33 @@ class TeamProfile extends Component {
                 //let person = resData.results
                 this.setState({ team: resData }); //this is an asynchronous function
             })
-
-
     }
+
+    // shouldComponentUpdate(nextProps) {
+    //     // console.log(this.props.location.state.teamId);
+    //     // console.log(nextProps.location.state.teamId);
+    //     // console.log(this.props.location.state.teamId !== nextProps.location.state.teamId);
+    //     // if(this.props.location.state.teamId !== nextProps.location.state.teamId){
+
+    //     // console.log(this.state.tId);
+    //     // console.log(nextProps.location.state.teamId);
+    //     // this.setState({tId: nextProps.location.state.teamId}); 
+    //     // return true;
+    //     const differentTeam = this.props.location.state.teamId !== nextProps.location.state.teamId;
+    //     return differentTeam;
+    // }
+
     render() {
+
         return (
             <div id="teamProfile">
                 <div className="container"><br />
                     <TeamProfileHead teamData={this.state.team} />
                     <div className="jumbotron p-3 text-center">
-                    <div className="card" >
-                    <h4 className="card-header bg-dark text-white"> Team Roster </h4>
-                    <FilterForm match={this.props.match} onChange={this.filterPlayers} />
-                    </div>
+                        <div className="card" >
+                            <h4 className="card-header bg-dark text-white"> Team Roster </h4>
+                            <FilterForm match={this.props.match} onChange={this.filterPlayers} />
+                        </div>
                     </div>
                     <ProfileTile data={this.state.filteredPlayers} />
 
@@ -90,20 +102,6 @@ class TeamProfile extends Component {
     //         this.setState({tId:nextProps.location.state.teamId});
     //     }
     // }
-
-    // shouldComponentUpdate(nextProps){
-    //     // console.log(this.props.location.state.teamId);
-    //     // console.log(nextProps.location.state.teamId);
-    //     // console.log(this.props.location.state.teamId !== nextProps.location.state.teamId);
-    //     if(this.props.location.state.teamId !== nextProps.location.state.teamId){
-    //     console.log(this.state.tId);
-    //     console.log(nextProps.location.state.teamId);
-    //     this.setState({tId: nextProps.location.state.teamId}); 
-    //     }
-
-    //   }
-
-
 }
 
 export default TeamProfile;

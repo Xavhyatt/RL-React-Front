@@ -8,7 +8,7 @@ class HomePage extends Component {
         return (
             <div>
                 <Carousel />  
-                <h2 id="heading"> Latest Stories</h2>
+                <h2 id="heading"> Featured Stories</h2>
                 <NewsMain />
             </div>
         );

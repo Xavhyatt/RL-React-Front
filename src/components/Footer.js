@@ -8,7 +8,7 @@ class Footer extends Component {
             <div>
                 
                <img src={logo} alt="logo" height="75px"/>
-             <h3 id="heading"> Footer </h3>
+             
             </div>
         );
     }
