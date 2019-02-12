@@ -9,11 +9,21 @@ class PlayerProfile extends Component {
             player: [],
             showNews: false
         } 
-
+        console.log(this.props.profile)
     }
 
 
-
+componentDidMount(){
+    fetch('http://localhost:8090/api/player/' + this.props.profile)
+    .then(response => response.json())
+    .then(resData => {
+        console.log(JSON.stringify(resData))
+        //do your logic here       
+        //let person = resData.results
+        this.setState({ player: resData }); //this is an asynchronous function
+        console.log(this.props)
+    })
+}
  
     render() {
        
@@ -22,7 +32,7 @@ class PlayerProfile extends Component {
         
                 
                     <div className="jumbotron p-3 text-center" >
-                        <h4 className="display-4">{this.props.data.name} {this.props.data.surname}
+                         <h4 className="display-4">{this.state.player.name} {this.state.player.surname}
                             <div className="float-centre small">
                                 <button className="btn btn-raised btn-danger" 
                                     data-toggle="tooltip" data-placement="top" title="Tooltip on top"> Club History 
@@ -38,17 +48,17 @@ class PlayerProfile extends Component {
                         </h4>
                         <div className="card-body">
                             <div className="image float-left user-l">
-                                <img key={this.props.data.playerId.toString() + "pic"} src={this.props.data.pictureLink} className="img-thumbnail"
+                                <img  src={this.state.player.pictureLink} className="img-thumbnail"
                                     alt="avatar" />
                             </div>
-                            <h4 className="card-title" key={this.props.data.playerId.toString() + "position"}>{this.props.data.position}</h4>
-                            <p className="card-text" key={this.props.data.playerId.toString() + "details"}>
-                                Nationality: {this.props.data.nationality}<br />
-                                Height (cm): {this.props.data.height}<br />
-                                Weight (kg): {this.props.data.weight}<br />
-                                Birthday:  {(this.props.data.birth).substring(0,10)}<br /></p>
+                            <h4 className="card-title" >{this.state.player.position}</h4>
+                            <p className="card-text" >
+                                Nationality: {this.state.player.nationality}<br />
+                                Height (cm): {this.state.player.height}<br />
+                                Weight (kg): {this.state.player.weight}<br />
+                                Birthday:  {(this.state.player.birth)}<br /></p>
                         </div>
-                     
+                      
                     </div>
                    
           

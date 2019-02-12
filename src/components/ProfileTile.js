@@ -5,21 +5,43 @@ import './css/profiletile.css';
 
 
 class ProfileTile extends Component {
+
     state = {
+        players: this.props.data,
         open: false,
+        player:[],
+        playerId: []
     };
 
-    onOpenModal = () => {
+    onOpenModal = (event) => {
+        // let pId = (event.target.getAttribute('id')).toString();
+        // this.setState({playerId : pId});
         this.setState({ open: true });
+        // console.log(pId);
+        // console.log(this.state.playerId);
     };
 
     onCloseModal = () => {
         this.setState({ open: false });
     };
 
+    getplayer = (index) => {
+
+        let ply = this.props.data[index];
+        this.setState({player: ply});
+   
+        // console.log(index);
+         console.log(ply.playerId);
+        this.setState({ open: true });
+        return ply;
+    }
+
+ 
+
+    
 
     render() {
-        let tile = this.props.data.map((element) => {
+        let tile = this.props.data.map((element, index) => {
             const { open } = this.state;
             return (
 
@@ -41,7 +63,7 @@ class ProfileTile extends Component {
                         </h4>
                         <div className="card-body">
                             <div className="image float-left user-l">
-                                <img key={element.playerId.toString() + "pic"} src={element.pictureLink} className="img-thumbnail"
+                                <img id="profiletileimg" key={element.playerId.toString() + "pic"} src={element.pictureLink} className="img-thumbnail"
                                     alt="avatar" />
                             </div>
                             <h4 className="card-title" key={element.playerId.toString() + "position"}>{element.position}</h4>
@@ -52,9 +74,9 @@ class ProfileTile extends Component {
                                 Birthday:  {(element.birth).substring(0, 10)}<br /></p>
                         </div>
                         <div>
-                            <button className="btn btn-raised btn-danger" onClick={this.onOpenModal}>Player Profile</button>
+                            <button id={element.playerId.toString()} className="btn btn-raised btn-danger" onClick={this.getplayer.bind(this,index)}>Player Profile</button>
                             <Modal open={open} onClose={this.onCloseModal} little>
-                                <PlayerProfile data={element} />
+                                <PlayerProfile profile={31} />
                             </Modal>
                         </div>
                     </div>

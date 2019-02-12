@@ -1,9 +1,9 @@
 
-			.carousel
-			{
-				height: 500px;
-				width: auto;
-			}
+		.carousel_container{
+			margin-left: 5%;
+			margin-right: 5%;
+		}
+	
 			.carousel-control.left
 			{
 				background: none;
@@ -54,15 +54,8 @@
 				margin: 0;
 				background-color: red;
 			}
-			.carousel-caption
+			#test
 			{
-				position: absolute;
-				right: 0;
-				bottom: 0;
-				left: 0;
-				z-index: 10;
-				padding-top: 20px;
-				padding-bottom: 20px;
 				color: #fff;
 				text-align: center;
 				background: rgba(0,0,0,0.4);

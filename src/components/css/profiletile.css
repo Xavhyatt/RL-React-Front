@@ -1,3 +1,15 @@
-.card {
+.col-sm-6 > .card {
     width: 100%;
+    
+}
+
+.col-sm-6 > .card > .card-body {
+    position: relative;
+    text-align: center;
+}
+
+#profiletileimg{
+    width:100%;
+    position: relative;
+  
 }

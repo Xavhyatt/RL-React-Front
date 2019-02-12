@@ -59,6 +59,7 @@ class TeamProfile extends Component {
                 //do your logic here       
                 //let person = resData.results
                 this.setState({ team: resData }); //this is an asynchronous function
+                console.log(this.state.team)
             })
     }
 

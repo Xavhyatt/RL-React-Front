@@ -29,7 +29,7 @@ export default class MyNavBar extends React.Component {
     };
   }
   componentDidMount() {
-    fetch('http://localhost:8090/api/league/1/team/')
+    fetch('http://localhost:8090/api/league/9/team/')
     .then(response =>  response.json())
     .then(resData => {
       //  console.log(JSON.stringify(resData))
@@ -69,7 +69,7 @@ export default class MyNavBar extends React.Component {
                <NavLink to="/"> <NavLinkR>Fixtures</NavLinkR></NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
+                <DropdownToggle nav caret id="superleaguedrop">
                   Super League
                 </DropdownToggle>
                 <DropdownMenu right>
@@ -79,7 +79,7 @@ export default class MyNavBar extends React.Component {
                 </DropdownMenu> 
               </UncontrolledDropdown>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
+                <DropdownToggle nav caret id="championshipdrop">
                   Championship
                 </DropdownToggle>
                 <DropdownMenu right>
@@ -89,7 +89,7 @@ export default class MyNavBar extends React.Component {
             </Nav>
           </Collapse>
           
-          <SearchBar className="searchBar"/>
+          <SearchBar id="searchBar" className="searchBar"/>
         </Navbar>
       </div>
 
