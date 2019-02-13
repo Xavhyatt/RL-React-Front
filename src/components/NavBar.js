@@ -15,6 +15,7 @@ import {
   import { BrowserRouter as Router,  NavLink } from "react-router-dom";
  
   import './css/header.css';
+import TeamProfile from './TeamProfile';
  
 
 export default class MyNavBar extends React.Component {
@@ -23,10 +24,12 @@ export default class MyNavBar extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false,
+          isOpen: false,
       slTeams: [],
-      cTeams: []    
+      cTeams: [],
+      teamId:""    
     };
+    console.log(this.props.handler)
   }
   componentDidMount() {
     fetch('http://localhost:8090/api/league/9/team/')
@@ -53,13 +56,15 @@ export default class MyNavBar extends React.Component {
       isOpen: !this.state.isOpen
     });
   }
+
+
   render() {
     return (
  
      <div>
         <Navbar className="navbar" color="light" light expand="md">
         <img className = "logo" src={logo} alt="logo" height="75px"/>
-          <NavbarToggler onClick={this.toggle} />
+          <NavbarToggler onClick={() => {this.toggle()}} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
@@ -73,8 +78,8 @@ export default class MyNavBar extends React.Component {
                   Super League
                 </DropdownToggle>
                 <DropdownMenu right>
-               
-                 <DropdownButton data={this.state.slTeams}/>
+  
+                 <DropdownButton type="button" data={this.state.slTeams}  handler={this.props.handler}  />
               
                 </DropdownMenu> 
               </UncontrolledDropdown>
@@ -83,7 +88,7 @@ export default class MyNavBar extends React.Component {
                   Championship
                 </DropdownToggle>
                 <DropdownMenu right>
-                <DropdownButton data={this.state.cTeams}/>
+                <DropdownButton data={this.state.cTeams} />
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
@@ -91,8 +96,10 @@ export default class MyNavBar extends React.Component {
           
           <SearchBar id="searchBar" className="searchBar"/>
         </Navbar>
+
       </div>
 
     );
   }
 }
+

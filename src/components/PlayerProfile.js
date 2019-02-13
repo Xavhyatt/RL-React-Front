@@ -1,30 +1,57 @@
 import React, { Component } from 'react';
 import './css/popup.css';
 // import PlayerNews from './PlayerNews';
+import DefaultPProfile from './DefaultPProfile';
 
 class PlayerProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
             player: [],
+            showMain: true,
             showNews: false
         } 
-        console.log(this.props.profile)
+         console.log(this.props.profile)
     }
 
 
-componentDidMount(){
-    fetch('http://localhost:8090/api/player/' + this.props.profile)
-    .then(response => response.json())
-    .then(resData => {
-        console.log(JSON.stringify(resData))
-        //do your logic here       
-        //let person = resData.results
-        this.setState({ player: resData }); //this is an asynchronous function
-        console.log(this.props)
-    })
+// componentDidMount(){
+//     console.log(this.props.play);
+//     fetch('http://localhost:8090/api/player/' + this.props.play)
+//     .then(response => response.json())
+//     .then(resData => {
+//         // console.log(JSON.stringify(resData))
+//         //do your logic here       
+//         //let person = resData.results
+//         this.setState({ player: resData }); //this is an asynchronous function
+//         console.log(this.state.player)
+//     })
+    
+
+//  }
+
+handleNewsClick(){
+    this.setState({showNews:true})
 }
- 
+// showMain(params) {
+//     if (this.state.showMain){
+        
+//              <DefaultPProfile playerdata={this.state.player}/>
+
+//     }
+// }
+    
+
+// shouldComponentUpdate(){
+//     function Content(){
+//         //     console.log(this.state.showMain)
+//         // if(this.state.showMain ===true ){
+//              return <DefaultPProfile info={this.state.player} />
+//         //}
+        
+//         }
+// }
+
     render() {
        
             return (
@@ -32,7 +59,7 @@ componentDidMount(){
         
                 
                     <div className="jumbotron p-3 text-center" >
-                         <h4 className="display-4">{this.state.player.name} {this.state.player.surname}
+                         <h4 className="display-4">{this.props.play.name} {this.props.play.surname}
                             <div className="float-centre small">
                                 <button className="btn btn-raised btn-danger" 
                                     data-toggle="tooltip" data-placement="top" title="Tooltip on top"> Club History 
@@ -48,15 +75,13 @@ componentDidMount(){
                         </h4>
                         <div className="card-body">
                             <div className="image float-left user-l">
-                                <img  src={this.state.player.pictureLink} className="img-thumbnail"
+                                <img  src={this.props.play.pictureLink} className="img-thumbnail"
                                     alt="avatar" />
                             </div>
-                            <h4 className="card-title" >{this.state.player.position}</h4>
-                            <p className="card-text" >
-                                Nationality: {this.state.player.nationality}<br />
-                                Height (cm): {this.state.player.height}<br />
-                                Weight (kg): {this.state.player.weight}<br />
-                                Birthday:  {(this.state.player.birth)}<br /></p>
+                            
+                             {/* <Content />  */}
+                              <DefaultPProfile info={this.props.play}/> 
+                            
                         </div>
                       
                     </div>
@@ -66,4 +91,14 @@ componentDidMount(){
             );   
     }
 }
+
 export default PlayerProfile;
+
+
+// function Content(){
+// //     console.log(this.state.showMain)
+// // if(this.state.showMain ===true ){
+//      return <DefaultPProfile info={this.state.player} />
+// //}
+
+//}

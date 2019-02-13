@@ -4,6 +4,7 @@ import FilterForm from './FilterForm';
 import ProfileTile from './ProfileTile';
 
 
+
 class TeamProfile extends Component {
     constructor(props) {
         super(props);
@@ -12,11 +13,11 @@ class TeamProfile extends Component {
             team: [],
             players: [],
             filteredPlayers: []
-        }
+        };
     }
 
     filterPlayers = (playerFilter) => {
-        fetch('http://localhost:8090/api/team/' + this.props.location.state.teamId + '/player')
+        fetch('http://localhost:8090/api/team/' + + this.props.teamId + '/player')
             .then(response => response.json())
             .then(resData => {
                 //  console.log(JSON.stringify(resData))
@@ -41,7 +42,7 @@ class TeamProfile extends Component {
     
 
 
-        fetch('http://localhost:8090/api/team/' + this.props.location.state.teamId + '/player')
+        fetch('http://localhost:8090/api/team/' + this.props.teamId + '/player')
             .then(response => response.json())
             .then(resData => {
                 //  console.log(JSON.stringify(resData))
@@ -52,14 +53,14 @@ class TeamProfile extends Component {
 
 
 
-        fetch('http://localhost:8090/api/team/' + this.props.location.state.teamId)
+        fetch('http://localhost:8090/api/team/' + this.props.teamId)
             .then(response => response.json())
             .then(resData => {
                 //console.log(JSON.stringify(resData))
                 //do your logic here       
                 //let person = resData.results
                 this.setState({ team: resData }); //this is an asynchronous function
-                console.log(this.state.team)
+                // console.log(this.state.team)
             })
     }
 

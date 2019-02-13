@@ -17,13 +17,13 @@ class NewsMain extends Component {
     const newsapi = new NewsAPI('a5b874ddda254d3d991545e38bb9a6cb');
 
     newsapi.v2.everything({
-        q:'"rugby league" NOT ("six nations" OR "super bowl" OR "darts" OR "boxing" OR "news corp" OR "british indoor championships" OR "newcastle united" OR "Sevens")',
+        q:'"rugby league" NOT ("emirates" OR "xzibit" OR  "six nations" OR "super bowl" OR "darts" OR "boxing" OR "news corp" OR "british indoor championships" OR "newcastle united" OR "Sevens")',
         language:'en',
         sortBy:'relevance',
         page:2
     }).then(response => {
         this.setState({news: response.articles});
-        console.log(this.state.news);
+        // console.log(this.state.news);
     })
     
 

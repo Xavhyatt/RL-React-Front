@@ -3,8 +3,10 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import HomePage from './HomePage';
 import TeamProfile from './TeamProfile';
 
-class MainContent extends Component {
 
+
+
+class MainContent extends Component {
     render() {
 
         return (
@@ -14,7 +16,7 @@ class MainContent extends Component {
                     
                         <Route exact path='/' component={HomePage}  />
                         {/* <Route path='/fixtures' component={HomePage}  /> */}
-                        <Route path='/:teamprofile' component={TeamProfile}  />
+                        <Route path='/:teamprofile' component={() => <TeamProfile teamId={this.props.teamId} />}  />
                     
                 </div>
 
@@ -24,3 +26,4 @@ class MainContent extends Component {
 }
 
 export default MainContent;
+

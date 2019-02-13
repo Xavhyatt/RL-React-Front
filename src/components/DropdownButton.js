@@ -6,19 +6,14 @@ import { BrowserRouter as Router, NavLink } from "react-router-dom";
 
 
 class DropdownButton extends Component {
-    // constructor(props){
-    //     super(props)
+     constructor(props){
+         super(props)
+     }
 
-    //     this.handleClick = (e) => {
-    //         this.props.onClick(this.state);
-    //         this.setState(teamId=element.teamId.toString());
 
-    //     }
-
-    //     this.state={
-    //         teamId : ""
-    //     }
-    // }
+    handleClick (e)  {
+       this.props.handler(e);
+    }
  
 
     render() {
@@ -26,15 +21,16 @@ class DropdownButton extends Component {
              let teampathname = "/teamprofile/" + element.teamId.toString();
              let thisteamId = element.teamId.toString();
             return (
-             
+
                     <NavLink to={{
                         pathname: teampathname,
                         state:{
                            teamId: thisteamId
                         }
                     }}>
-                <DropdownItem key={element.teamId.toString()} >
-                    {element.name}
+                <DropdownItem type="button"
+                 key={element.teamId.toString()} id={element.teamId.toString()} onClick={() => {this.handleClick(element.teamId)}} >
+                {element.name}
                 </DropdownItem>
                 </NavLink>
               

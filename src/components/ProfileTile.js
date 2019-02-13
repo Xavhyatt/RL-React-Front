@@ -9,17 +9,15 @@ class ProfileTile extends Component {
     state = {
         players: this.props.data,
         open: false,
-        player:[],
-        playerId: []
+        player:"",
+        playerId: ""
     };
 
-    onOpenModal = (event) => {
-        // let pId = (event.target.getAttribute('id')).toString();
-        // this.setState({playerId : pId});
-        this.setState({ open: true });
-        // console.log(pId);
-        // console.log(this.state.playerId);
-    };
+    // onOpenModal = (event) => {
+
+    //     this.setState({ open: true });
+    //   
+    // };
 
     onCloseModal = () => {
         this.setState({ open: false });
@@ -28,12 +26,13 @@ class ProfileTile extends Component {
     getplayer = (index) => {
 
         let ply = this.props.data[index];
+        this.setState({playerId: ply.playerId});
         this.setState({player: ply});
-   
-        // console.log(index);
-         console.log(ply.playerId);
+         console.log(ply);
+         console.log(this.state.playerId);
+         let plyNum = ply.playerId;
         this.setState({ open: true });
-        return ply;
+        return plyNum;
     }
 
  
@@ -74,9 +73,9 @@ class ProfileTile extends Component {
                                 Birthday:  {(element.birth).substring(0, 10)}<br /></p>
                         </div>
                         <div>
-                            <button id={element.playerId.toString()} className="btn btn-raised btn-danger" onClick={this.getplayer.bind(this,index)}>Player Profile</button>
+                            <button id={element.playerId.toString()} className="btn btn-raised btn-danger" onClick={() => {this.getplayer(index)}}>Player Profile</button>
                             <Modal open={open} onClose={this.onCloseModal} little>
-                                <PlayerProfile profile={31} />
+                                <PlayerProfile profile={() =>{this.getplayer(index)}} play={this.state.player}/>
                             </Modal>
                         </div>
                     </div>
