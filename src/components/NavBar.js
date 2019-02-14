@@ -88,7 +88,7 @@ export default class MyNavBar extends React.Component {
                   Championship
                 </DropdownToggle>
                 <DropdownMenu right>
-                <DropdownButton data={this.state.cTeams} />
+                <DropdownButton data={this.state.cTeams} handler={this.props.handler}  />
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
