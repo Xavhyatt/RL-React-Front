@@ -49,6 +49,7 @@ class TeamProfile extends Component {
                 //do your logic here       
                 //let person = resData.results
                 this.setState({ players: resData }); //this is an asynchronous function
+                this.setState({ filteredPlayers: resData });
             })
 
 
@@ -84,6 +85,7 @@ class TeamProfile extends Component {
             <div id="teamProfile">
                 <div className="container"><br />
                     <TeamProfileHead teamData={this.state.team} />
+                    
                     <div className="jumbotron p-3 text-center">
                         <div className="card" >
                             <h4 className="card-header bg-dark text-white"> Team Roster </h4>

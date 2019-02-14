@@ -48,7 +48,7 @@ class Search extends Component {
           ref={input => this.search = input}
           onChange={this.handleInputChange}
         />
-        <DropdownButton  data={this.state.results} />
+        <DropdownButton  data={this.state.results} handler={this.props.handler} />
       </form>
     )
   }

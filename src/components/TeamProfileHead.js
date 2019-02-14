@@ -21,7 +21,7 @@ class TeamProfileHead extends Component {
                             alt="avatar" />
                     </div>
                     <p className="lead">
-                        <a className="btn btn-primary btn-lg" href={this.props.teamData.website} role="button">Official Website</a>
+                        <a className="btn btn-primary btn-lg" href={this.props.teamData.website} target="_blank" role="button">Official Website</a>
                     </p>
                     <p className="lead"> Location: {this.props.teamData.location}</p>
                 <p className="lead"> Ground: {this.props.teamData.groundName}</p>

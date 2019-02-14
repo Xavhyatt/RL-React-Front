@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './css/popup.css';
 // import PlayerNews from './PlayerNews';
 import DefaultPProfile from './DefaultPProfile';
+// import './css/playerprofile.css';
 
 class PlayerProfile extends Component {
     constructor(props) {
@@ -61,14 +62,14 @@ handleNewsClick(){
                     <div className="jumbotron p-3 text-center" >
                          <h4 className="display-4">{this.props.play.name} {this.props.play.surname}
                             <div className="float-centre small">
-                                <button className="btn btn-raised btn-danger" 
+                                <button id ="test1" className="btn btn-raised btn-danger" 
                                     data-toggle="tooltip" data-placement="top" title="Tooltip on top"> Club History 
                                     <i className="fa fa-user-circle" aria-hidden="true"></i>
                                 </button>
-                                <button className="btn btn-raised btn-danger" title="Enviar mensaje"> Stats 
+                                <button id ="test1" className="btn btn-raised btn-danger" title="Enviar mensaje"> Stats 
                                     <i className="fa fa-envelope" aria-hidden="true"></i>
                                 </button>
-                                <button className="btn btn-raised btn-danger" onClick={this.showNews} title="Seguir usuario"> News 
+                                <button id ="test1" className="btn btn-raised btn-danger" onClick={this.showNews} title="Seguir usuario"> News 
                                     <i className="fa fa-eye" aria-hidden="true"></i>
                                 </button>
                             </div>

@@ -94,7 +94,7 @@ export default class MyNavBar extends React.Component {
             </Nav>
           </Collapse>
           
-          <SearchBar id="searchBar" className="searchBar"/>
+          <SearchBar id="searchBar" className="searchBar" handler={this.props.handler}/>
         </Navbar>
 
       </div>
